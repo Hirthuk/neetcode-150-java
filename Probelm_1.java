@@ -63,7 +63,7 @@ public static boolean containsDuplicate2(int[] nums) {
 //        Brute force
         int nums[] = {1,2,3,4};
 //        System.out.println(containsDuplicate(nums));
-        System.out.println(containsDuplicate4(nums));
+        System.out.println(containsDuplicate2(nums));
 
     }
 }
