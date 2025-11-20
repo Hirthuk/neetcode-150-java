@@ -79,7 +79,7 @@ public class Problem_2 {
         int[] array = new int[26];
 
         for(int i =0; i < s.length(); i++) {
-            array[s.charAt(i) -97]++;
+            array[s.charAt(i) -97]++; //Increase the number +1 at the index of the array.
             array[t.charAt(i) -97]--;
 
         }
