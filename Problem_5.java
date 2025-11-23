@@ -57,10 +57,77 @@ public class Problem_5 {
 
 
     }
+
+//    Optimized solution is to use Priority Queue -> We need to store only k elements and based on the large occurrences
+//    We will remove the least occurrences elements - Revise about how Priority queue works before revise
+
+    public static int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int num : nums) {
+            map.put(num, map.getOrDefault(num,0) +1);
+        }
+
+        Queue<Integer> queue = new PriorityQueue<>((a,b) -> map.get(a) - map.get(b));
+
+                // This is the custom comparator defining the heap's order.
+// This expression returns:
+// 1. A NEGATIVE value if map.get(a) < map.get(b).
+//    - In a Min-Heap, a negative result means 'a' has higher priority (is "smaller") than 'b'.
+//    - This ensures the element 'a' with the **lower frequency** is prioritized and placed closer to the root.
+// 2. A POSITIVE value if map.get(a) > map.get(b).
+//    - This means 'a' has lower priority than 'b'.
+//    - This ensures the element 'a' with the **higher frequency** sinks down the heap.
+// 3. ZERO if frequencies are equal.
+//
+// **RESULT:** This comparator creates a **Min-Heap based on frequency**.
+// The element at the root (the one `poll()` removes) is always the element with the **least frequency**.
+
+        for(int q : map.keySet()) {
+            queue.add(q); // At first it won't compare -> then it will compare and add based on the frequency definition we set inside
+            if(queue.size() > k) {
+                queue.poll(); //Return the first priority element and removes it
+            }
+        }
+
+        int[] ans = new int[k];
+        for(int i=0; i <k; i++) {
+            ans[i] = queue.poll();
+        }
+
+        return ans;
+    }
+
+    public static int[] practiceRepeat(int[] nums, int k) {
+        Map<Integer,Integer> map = new HashMap<>();
+
+        for(int n : nums) {
+            map.put(n, map.getOrDefault(n,0) + 1);
+        }
+
+        Queue<Integer> queue = new PriorityQueue<>(
+//                Ascending order
+                (a,b) -> map.get(a) - map.get(b)
+        );
+
+        for(int n : map.keySet()) {
+            queue.add(n);
+            if(queue.size() > k) {
+                queue.poll();
+            }
+        }
+
+        int[] ans = new int[k];
+        for(int i=0; i < k; i++) {
+            ans[i] = queue.poll();
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] nums = {3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6};
         int k = 10;
-       int[] result = topKElements(nums,k);
+       int[] result = topKFrequent(nums,k);
        for(int num : result) {
            System.out.println(num);
        }
