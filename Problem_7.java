@@ -1,3 +1,4 @@
+import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +45,7 @@ public class Problem_7 {
         return result;
     }
 
-//    Optimal solution
+//    Optimal solution - Still don't fully get it yet.
     public static int[] productExceptSelf2(int[] nums) {
 //   Complex to Understand moving to next
             int n = nums.length;
@@ -54,7 +55,9 @@ public class Problem_7 {
             for (int i = 1; i < n; i++) {
                 res[i] = res[i - 1] * nums[i - 1];
             }
-
+            for(int num : res) {
+                System.out.println("Here " + num);
+            }
             int postfix = 1;
             for (int i = n - 1; i >= 0; i--) {
                 res[i] *= postfix;
@@ -67,7 +70,7 @@ public class Problem_7 {
 
     public static void main(String[] args) {
         int[] nums = {1,2,3,4};
-        int[] result = productExceptSelf1(nums);
+        int[] result = productExceptSelf2(nums);
         for(int num : result) {
             System.out.println(num);
         }
