@@ -1,3 +1,5 @@
+package Array_Hasing;
+
 import java.util.*;
 
 public class Problem_9 {

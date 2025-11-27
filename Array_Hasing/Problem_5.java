@@ -1,4 +1,5 @@
-import java.sql.Array;
+package Array_Hasing;
+
 import java.util.*;
 import java.util.stream.Collectors;
 

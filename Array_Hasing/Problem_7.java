@@ -1,10 +1,4 @@
-import java.beans.PropertyEditorSupport;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+package Array_Hasing;
 
 public class Problem_7 {
 
