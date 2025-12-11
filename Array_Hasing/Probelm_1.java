@@ -43,7 +43,7 @@ public static boolean containsDuplicate2(int[] nums) {
 //Using Streams
 
     public static boolean containsDuplicate3(int[] nums) {
-        return Arrays.stream(nums).boxed().sorted().distinct().count() != nums.length;
+        return Arrays.stream(nums).boxed().distinct().count() != nums.length;
 //        Sorted the elements in the array -> distinct will remove the repetitive elements right.. in that case..
 //        It is going to reduce the length of the array so if it less means something common was there so true or false
     }
