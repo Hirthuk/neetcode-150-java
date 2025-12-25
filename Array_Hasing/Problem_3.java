@@ -50,6 +50,7 @@ public class Problem_3 {
         }
         return new int[] {};
     }
+
     public static void main(String[] args) {
         int[] array = {2,7,11,15};
         int[] result = twoSum1(array, 9);

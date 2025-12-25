@@ -60,7 +60,7 @@ public class Problem_5 {
     }
 
 //    Optimized solution is to use Priority Queue -> We need to store only k elements and based on the large occurrences
-//    We will remove the least occurrences elements - Revise about how Priority queue works before revise
+//    We will remove the least occurrences elements - Revise about how Priority queue works before start
 
     public static int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();

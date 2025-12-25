@@ -55,6 +55,27 @@ public class Problem_4 {
       }
       return new ArrayList<>(map.values());
     }
+
+//    Better Optimal Solution
+
+    public List<List<String>> groupAnagrams3 (String[] strs) {
+//        Taking and storing one sorted element as key and it's finded one as value
+//        map.values() gives all the values.
+        Map<String, ArrayList<String>> map = new HashMap<>();
+
+        for(String s: strs) {
+            char[] sCharArray = s.toCharArray();
+            Arrays.sort(sCharArray);
+            String sString = new String(sCharArray);
+
+            if(!map.containsKey(sString)) {
+                map.put(sString, new ArrayList<String>());
+            }
+            map.get(sString).add(s);
+        }
+
+        return new ArrayList<>(map.values());
+    }
     public static void main(String[] args) {
         String[] strs = {"eat","tea","tan","ate","nat","bat"};
         System.out.println(groupAnagrams(strs));
