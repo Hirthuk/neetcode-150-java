@@ -51,6 +51,7 @@ public class Problem_16 {
 
     //    Using HashMap to pinpoint the last occurence of the repeated element and move it to next with adding 1.
     public int lengthOfLongestSubstring2(String s) {
+//        abcabcbb
         int start = 0;
         int result = 0;
         HashMap<Character, Integer> map = new HashMap<>();

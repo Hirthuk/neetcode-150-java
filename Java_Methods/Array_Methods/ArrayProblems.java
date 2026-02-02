@@ -34,6 +34,7 @@ public class ArrayProblems {
     public static int search(int[] arr, int target) {
 //      Binary search works with sorted Array only
         int[] sorted = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(sorted);
         return Arrays.binarySearch(sorted, target);
     }
 

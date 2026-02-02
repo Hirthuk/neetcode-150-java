@@ -135,9 +135,38 @@ public class Problem_9 {
         return longestSub;
     }
 
+//    Best Optimal
+public static int longestConsecutive6(int[] nums) {
+    if(nums.length == 0 || nums.length == 1) {
+        return nums.length;
+    }
+    int result = 0;
+    Set<Integer> set = new HashSet<>();
+
+    for(int i: nums) {
+        set.add(i);
+    }
+
+    for(int s : set) {
+        // Means this will be the starting point of the sequence if is doesn't contain previous element
+        if(!set.contains(s -1)) {
+            int currentElement = s;
+            int count = 1;
+
+            while(set.contains(currentElement+1)) {
+                count++;
+                currentElement++;
+            }
+            result = Math.max(result, count);
+        }
+    }
+
+    return result;
+}
+
     public static void main(String[] args) {
         int[] nums = {9,1,4,7,3,-1,0,5,8,-1,6};
-        int value = longestConsecutive(nums);
+        int value = longestConsecutive3(nums);
         System.out.println("answer " + value);
     } }
 
