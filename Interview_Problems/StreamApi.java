@@ -2,6 +2,7 @@ package Interview_Problems;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamApi {
 
@@ -120,11 +121,73 @@ public class StreamApi {
         return "";
     }
 
+//    Join a list of strings into a single comma-separated string.
+    public static String joinString(List<String> list) {
+        StringBuilder sb = new StringBuilder();
+
+        list.stream().forEach((element) -> {
+            sb.append(element).append(',');
+        });
+
+        return sb.toString();
+    }
+
+//    Square each number in a list and collect the result.
+    public static List<Integer> squareNumbers(List<Integer> list) {
+        return list.stream().map((element) -> element * element).collect(Collectors.toList());
+    }
+//    Partition a list of integers into even and odd numbers.
+    public static List<List<Integer>> oddEven(List<Integer> list) {
+        List<Integer> odd = list.stream().filter((element) -> element % 2 != 0)
+                .collect(Collectors.toList());
+        List<Integer> even = list.stream().filter((element) -> odd.indexOf(element) == -1).
+                collect(Collectors.toList());
+
+//        Better way to use GroupingBy or Partitioning by for use case like this with two possiblity
+        Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+          return new ArrayList<>(map.values());
+//        return List.of(odd, even);
+    }
+
+//    Group a list of strings by their length.
+    public static List<List<String>> groupStringByLength(List<String> list) {
+        Map<Integer, List<String>> map = new HashMap<>();
+
+        list.stream().forEach(
+                (element) -> {
+                    if(map.containsKey(element.length())) {
+                        map.get(element.length()).add(element);
+                    }
+                    else{
+                        map.put(element.length(), new ArrayList<>());
+                        map.get(element.length()).add(element);
+                    }
+                }
+        );
+
+//      Better Way
+        Map<Integer, List<String>> result = list.stream().collect(Collectors.groupingBy(String:: length));
+
+
+        return new ArrayList<>(result.values());
+    }
+
+//    Check whether a given string is a palindrome using Stream API.
+    public static boolean checkPalindrome(String s) {
+        String result = s.toLowerCase();
+        return IntStream.range(0, result.length() / 2)
+                .allMatch( i -> result.charAt(i) == result.charAt(result.length() - 1 - i));
+
+
+    }
+
     public static void main(String[] args) {
         int[] numArray = {1,29,3,4,4,5,6, 102};
         List<Integer> list = Arrays.stream(numArray).boxed().collect(Collectors.toList());
         List<String> StringList = List.of("Sharan", "Thippu", "Priyan1");
         String s = "Gayathri Kollipara";
+        String palindrome = "Mamuu";
         System.out.println(maxElement(numArray));
         System.out.println(minElement(list));
         System.out.println(averageStream(numArray));
@@ -139,6 +202,11 @@ public class StreamApi {
         System.out.println(firstNonRepeatingCharacter(s));
         System.out.println(findDuplicateElements(s));
         System.out.println(findLongestString(StringList));
+        System.out.println(joinString(StringList));
+        System.out.println(squareNumbers(list));
+        System.out.println(oddEven(list));
+        System.out.println(groupStringByLength(StringList));
+        System.out.println(checkPalindrome(palindrome));
 
     }
 }
