@@ -7,8 +7,9 @@ public class ArrayDSARevision {
     // 1. Find Largest Element
     static int largest(int[] arr) {
         int max = arr[0];
-        for (int num : arr)
+        for (int num : arr) {
             max = Math.max(max, num);
+        }
         return max;
     }
 
