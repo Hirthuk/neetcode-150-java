@@ -1,6 +1,7 @@
 package Interview_Problems.Stream_Level2;
 
 import java.awt.*;
+import java.lang.foreign.SymbolLookup;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -106,11 +107,31 @@ public class StreamLevel2 {
                 );
     }
 
+//    Get list of employee names in each department.
+    public static Map<String, List<String>> departmentEmployees(List<Employee> list) {
+        return list.stream().collect(
+                Collectors.groupingBy(Employee:: getDepartment,
+                        Collectors.mapping(Employee:: getName, Collectors.toList())
+                        )
+        );
+    }
+
+//    Find total salary expense of company.
+    public  static Double totalSalaryExpense(List<Employee> list) {
+        return list.stream().map(employee -> employee.getSalary())
+                .reduce((a,b) -> a+b).get();
+    }
+
+//    Check if all employees are above age 25.
+    public static Boolean allAbove25(List<Employee> list) {
+        return list.stream().allMatch(employee -> employee.getAge() > 25);
+    }
+
 
     public static void main(String[] args) {
 
         List<Employee> employees = List.of(
-                new Employee(1, "Sharan", "IT", 80000, 26, "Male"),
+                new Employee(1, "Sharan", "IT", 80000, 22, "Male"),
                 new Employee(2, "Priya", "HR", 60000, 24, "Female"),
                 new Employee(3, "Arjun", "IT", 95000, 28, "Male"),
                 new Employee(4, "Sneha", "Finance", 75000, 32, "Female"),
@@ -132,6 +153,10 @@ public class StreamLevel2 {
         System.out.println(sortBySalaryAge(employees));
         System.out.println(top3PaidEmployee(employees));
         System.out.println(employeebased80k(employees));
+        System.out.println(departmentEmployees(employees));
+        System.out.println(totalSalaryExpense(employees));
+        System.out.println(allAbove25(employees));
+
 
     }
 
