@@ -53,7 +53,7 @@ public class Problem_3 {
 
     public static void main(String[] args) {
         int[] array = {2,7,11,15};
-        int[] result = twoSum1(array, 9);
+        int[] result = twoSum2(array, 9);
         System.out.println(Arrays.toString(result));
 
 
